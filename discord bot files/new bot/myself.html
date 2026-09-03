@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="mn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Light | Хөгжүүлэгчийн танилцуулга</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://i.pinimg.com/originals/ab/41/bc/ab41bcdab29bb2dcfee90b1e96da2a35.gif') no-repeat center center fixed;
+            background-size: cover;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            margin: 0;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Үндсэн glass карт */
+        .portfolio {
+            max-width: 850px;
+            width: 100%;
+            background: rgba(18, 24, 32, 0.6);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(88, 166, 255, 0.15);
+            border-radius: 2.5rem;
+            padding: 2.5rem 2.2rem;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px rgba(88, 166, 255, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio:hover {
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.7), 0 0 45px rgba(88, 166, 255, 0.25);
+            transform: translateY(-4px);
+        }
+
+        /* Header хэсэг: avatar + үндсэн мэдээлэл */
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .avatar-glow {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #1e2a3a, #0f172a);
+            border: 2px solid rgba(88, 166, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            box-shadow: 0 0 30px rgba(88, 166, 255, 0.5);
+            margin-bottom: 1.25rem;
+            transition: all 0.3s;
+        }
+
+        .avatar-glow:hover {
+            box-shadow: 0 0 45px #58a6ff;
+            border-color: #58a6ff;
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #ffffff, #bddcff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+        }
+
+        .badge {
+            background: rgba(88, 166, 255, 0.15);
+            color: #58a6ff;
+            padding: 0.3rem 1.3rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            margin-bottom: 1.2rem;
+            display: inline-block;
+        }
+
+        .bio-text {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: rgba(220, 230, 245, 0.9);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem 1.5rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Tech stack тэгүүд */
+        .tech-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.7rem;
+            margin: 2rem 0 1.8rem;
+        }
+
+        .tech-tag {
+            background: rgba(30, 40, 55, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(88, 166, 255, 0.25);
+            padding: 0.55rem 1.2rem;
+            border-radius: 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #b9d9ff;
+            transition: all 0.25s ease;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .tech-tag:hover {
+            background: rgba(88, 166, 255, 0.2);
+            border-color: #58a6ff;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(88, 166, 255, 0.3);
+        }
+
+        /* GitHub статистик картууд */
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: center;
+            margin: 1.8rem 0 2rem;
+        }
+
+        .stat-card {
+            flex: 1 1 200px;
+            background: rgba(10, 15, 22, 0.55);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.8rem;
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5));
+        }
+
+        .stat-card:hover {
+            border-color: rgba(88, 166, 255, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Social links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.8rem 0 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            text-decoration: none;
+            backdrop-filter: blur(8px);
+        }
+
+        .social-icon img {
+            width: 22px;
+            height: 22px;
+            filter: brightness(0) invert(0.9);
+        }
+
+        .social-icon:hover {
+            background: #58a6ff;
+            border-color: #58a6ff;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #58a6ff;
+        }
+
+        hr {
+            border: 0.5px solid rgba(88, 166, 255, 0.2);
+            margin: 1.8rem 0 1.2rem;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: #8b9bb5;
+        }
+
+        .quote-img {
+            max-width: 280px;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        .visitor-badge img {
+            height: 28px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 550px) {
+            .portfolio {
+                padding: 1.8rem;
+            }
+
+            .footer-row {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="portfolio">
+        <div class="profile-header">
+            <div class="avatar-glow">⚡</div>
+            <h1>Light</h1>
+            <span class="badge">16 настай • Discord Бот & Вэб Хөгжүүлэгч</span>
+            <p class="bio-text">
+                Сайн уу? Намайг Light гэдэг. Би Python болон Discord.py сангуудыг ашиглан ухаалаг, автоматжуулсан ботууд
+                хөгжүүлдэг. Мөн HTML, CSS, JavaScript ашиглан вэб технологид суралцаж байгаа бөгөөд төслүүдийнхээ
+                өгөгдлийг хадгалах, удирдах зорилгоор MySQL болон SQLite өгөгдлийн санг хослуулан ашиглаж байна.
+            </p>
+        </div>
+
+        <div class="tech-cloud">
+            <span class="tech-tag">🐍 Python</span>
+            <span class="tech-tag">🤖 Discord.py</span>
+            <span class="tech-tag">🌐 HTML5</span>
+            <span class="tech-tag">🎨 CSS3</span>
+            <span class="tech-tag">⚡ JavaScript</span>
+            <span class="tech-tag">🗄️ MySQL</span>
+            <span class="tech-tag">📦 SQLite</span>
+        </div>
+
+        <h2 style="text-align: center; font-size: 1.3rem; margin-bottom: 0.8rem; color: #c0d4f0;">📊 GitHub Статистик
+        </h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <img src="https://github-readme-stats.shion.dev/api?username=ZERO1zx1&theme=dark&hide_border=false&include_all_commits=true&count_private=true"
+                    alt="GitHub Stats">
+            </div>
+            <div class="stat-card">
+                <img src="https://streak-stats.demolab.com/?user=ZERO1zx1&theme=dark&hide_border=false"
+                    alt="GitHub Streak">
+            </div>
+            <div class="stat-card">
+                <img src="https://github-readme-stats.shion.dev/api/top-langs/?username=ZERO1zx1&theme=dark&hide_border=false&include_all_commits=true&count_private=true&layout=compact"
+                    alt="Top Languages">
+            </div>
+        </div>
+
+        <div class="social-links">
+            <a href="https://instagram.com/uuganaazero1" target="_blank" class="social-icon" title="Instagram">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                    <path
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+            </a>
+            <a href="mailto:hotaruhoshi24@gmail.com" class="social-icon" title="Email">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                    <path
+                        d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.833l5.567-6.812zm9.201-1.259l4.623-3.747v9.458l-4.623-5.711z" />
+                </svg>
+            </a>
+            <a href="https://facebook.com/Ууганбаяр Л." target="_blank" class="social-icon" title="Facebook">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                    <path
+                        d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12z" />
+                </svg>
+            </a>
+        </div>
+
+        <hr>
+
+        <div class="footer-row">
+            <div class="quote-img">
+                <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" alt="Dev Quote"
+                    style="max-width: 100%; border-radius: 12px;">
+            </div>
+            <div class="visitor-badge">
+                <a href="https://visitcount.itsvg.in" target="_blank">
+                    <img src="https://komarev.com/ghpvc/?username=ZERO1zx1&icon=0&color=0" alt="Visitor Count">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

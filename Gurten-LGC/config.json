@@ -1,0 +1,10 @@
+{
+    "owner_id": 1468270807686840543,
+    "co_owner_ids": [1457121140597063899, 1118116540676571177],
+    "xp_per_message": 15,
+    "voice_xp_per_minute": 1,
+    "base_xp_needed": 100,
+    "bonus_percent": 10,
+    "transfer_tax_percent": 10,
+    "max_balance": 100000000
+}

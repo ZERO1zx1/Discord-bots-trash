@@ -1,0 +1,45 @@
+# Environment files (contain secrets)
+.env
+.env.local
+.env.production
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.sqlite
+
+# uv
+uv.lock
+
+# Large files
+*.zip
+*.ttf
+*.ttc
+*.fon
+*.dat
+Gurten-LGC/cogs/fonts/
+discord bot files/new bot/face_rating_bot/cogs/fonts/
