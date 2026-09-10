@@ -1,0 +1,41 @@
+:root { color-scheme: dark; --bg:#090b13; --panel:#131725; --line:rgba(255,255,255,.1); --text:#f5f6fa; --muted:#9aa2b6; --violet:#7c6df4; --mint:#57e3a0; }
+* { box-sizing:border-box; }
+body { margin:0; min-height:100vh; background:radial-gradient(circle at 70% -20%,rgba(124,109,244,.19),transparent 36%),var(--bg); color:var(--text); font-family:Inter,Segoe UI,sans-serif; }
+a { color:inherit; }
+.skip-link { position:fixed; left:12px; top:12px; transform:translateY(-160%); background:white; color:#111; padding:10px; z-index:5; }
+.skip-link:focus { transform:translateY(0); }
+.site-header { display:flex; align-items:center; justify-content:space-between; min-height:70px; padding:14px clamp(20px,5vw,72px); border-bottom:1px solid var(--line); background:rgba(9,11,19,.8); backdrop-filter:blur(16px); }
+.brand { display:flex; gap:10px; align-items:center; text-decoration:none; font-weight:800; }
+.brand span { display:grid; place-items:center; width:36px; height:36px; border-radius:11px; background:linear-gradient(145deg,#8c80f7,#5347ca); font-size:10px; }
+main { width:min(1180px,100%); margin:auto; padding:clamp(30px,6vw,76px) clamp(18px,4vw,48px); }
+.hero { display:grid; grid-template-columns:1.25fr .75fr; gap:48px; padding:clamp(26px,5vw,58px); border:1px solid rgba(124,109,244,.2); border-radius:22px; background:linear-gradient(145deg,rgba(124,109,244,.11),transparent 50%),var(--panel); }
+.eyebrow { margin:0; color:#747d91; font-size:10px; font-weight:850; letter-spacing:.14em; }
+h1 { max-width:720px; margin:15px 0; font-size:clamp(40px,6vw,72px); line-height:.98; letter-spacing:-.055em; }
+.lead { max-width:660px; color:var(--muted); line-height:1.7; }
+.actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:26px; }
+.button,.quiet { display:inline-flex; min-height:42px; align-items:center; justify-content:center; padding:10px 15px; border-radius:10px; font-size:12px; font-weight:750; text-decoration:none; }
+.button { border:1px solid rgba(165,154,253,.45); background:var(--violet); color:white; }
+.quiet { border:1px solid var(--line); background:transparent; color:var(--muted); }
+form { margin:0; }
+.health-card { align-self:center; padding:22px; border:1px solid var(--line); border-radius:16px; background:rgba(7,9,15,.7); }
+.health-card h2 { margin:8px 0 18px; }
+.health-card ul { display:grid; gap:12px; margin:0; padding:0; list-style:none; }
+.health-card li { position:relative; padding-left:26px; color:var(--muted); font-size:12px; }
+.health-card li:before { position:absolute; left:0; top:0; display:grid; place-items:center; width:17px; height:17px; border:1px solid var(--line); border-radius:50%; content:""; }
+.health-card li.ready { color:var(--text); }
+.health-card li.ready:before { border-color:rgba(87,227,160,.4); color:var(--mint); background:rgba(87,227,160,.1); content:"✓"; }
+.content-section { margin-top:48px; }
+.content-section > h2 { margin:8px 0 18px; font-size:25px; letter-spacing:-.04em; }
+.empty-state { padding:30px; border:1px dashed var(--line); border-radius:15px; background:rgba(255,255,255,.02); }
+.empty-state p,.two-up p { max-width:700px; margin-bottom:0; color:var(--muted); font-size:13px; line-height:1.65; }
+.guild-grid { display:grid; gap:10px; }
+.guild-grid article { display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:14px; padding:15px; border:1px solid var(--line); border-radius:13px; background:var(--panel); }
+.guild-grid article > span { display:grid; place-items:center; width:38px; height:38px; border-radius:11px; background:#262b40; font-size:10px; font-weight:850; }
+.guild-grid h3,.guild-grid p { margin:0; }
+.guild-grid p { color:var(--muted); font-size:11px; }
+.guild-grid a { color:#afa6ff; font-size:11px; }
+.two-up { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.two-up article { padding:24px; border:1px solid var(--line); border-radius:15px; background:var(--panel); }
+.signed-in { color:var(--muted); font-size:13px; }
+@media(max-width:760px){.hero,.two-up{grid-template-columns:1fr}.hero{gap:28px}.guild-grid article{grid-template-columns:auto 1fr}.guild-grid a{grid-column:2}}
+

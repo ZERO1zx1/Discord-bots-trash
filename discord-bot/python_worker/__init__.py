@@ -1,0 +1,2 @@
+"""GuildPilot background worker process."""
+

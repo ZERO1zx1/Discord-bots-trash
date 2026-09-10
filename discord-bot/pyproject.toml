@@ -1,0 +1,34 @@
+[project]
+name = "guildpilot"
+version = "0.1.0"
+description = "Discord community operations platform with a Flask control plane and discord.py bot"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "discord.py==2.6.4",
+  "Flask==3.1.2",
+  "gunicorn==23.0.0",
+  "httpx==0.28.1",
+  "python-dotenv==1.1.1",
+  "supabase==2.18.1",
+]
+
+[dependency-groups]
+dev = [
+  "pytest==8.4.2",
+  "pytest-cov==7.0.0",
+  "ruff==0.12.12",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests_py"]
+pythonpath = ["."]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+

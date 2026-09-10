@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GuildPilot Flask control plane</title>
+    <meta name="description" content="Secure server-rendered control plane for GuildPilot.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <script src="{{ url_for('static', filename='dashboard.js') }}" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to dashboard</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="GuildPilot home"><span>GP</span> GuildPilot</a>
+      {% if user %}
+        <form action="/auth/logout" method="post"><button class="quiet" type="submit">Sign out</button></form>
+      {% else %}
+        <a class="button" href="/auth/discord/start">Continue with Discord</a>
+      {% endif %}
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">FLASK CONTROL PLANE</p>
+          <h1>Operate your community from one calm surface.</h1>
+          <p class="lead">Discord OAuth stays server-side. Supabase secrets stay server-side. Every high-risk action is designed to be authorized again when it runs.</p>
+          <div class="actions">
+            {% if user %}
+              <span class="signed-in">Signed in as <strong>{{ user.username }}</strong></span>
+            {% else %}
+              <a class="button" href="/auth/discord/start">Connect Discord</a>
+            {% endif %}
+            <a class="quiet link-button" href="/api/health">View service health</a>
+          </div>
+        </div>
+        <aside class="health-card" data-health-endpoint="/api/health">
+          <p class="eyebrow">ENVIRONMENT READINESS</p>
+          <h2>Connection checklist</h2>
+          <ul>
+            <li data-check="supabase" class="{{ 'ready' if readiness.supabase else '' }}">Supabase server connection</li>
+            <li data-check="discord_oauth" class="{{ 'ready' if readiness.discord else '' }}">Discord OAuth credentials</li>
+            <li data-check="session_secret" class="{{ 'ready' if readiness.session else '' }}">Production session secret</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="content-section">
+        <p class="eyebrow">AUTHORIZED GUILDS</p>
+        <h2>Your communities</h2>
+        {% if guilds %}
+          <div class="guild-grid">
+            {% for guild in guilds %}
+              <article><span>{{ guild.name[:2] | upper }}</span><div><h3>{{ guild.name }}</h3><p>{{ 'Owner' if guild.owner else 'Manage Guild' }}</p></div><a href="/api/v1/guilds/{{ guild.id }}/analytics">Analytics JSON</a></article>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="empty-state"><strong>No Discord guilds loaded</strong><p>Sign in to fetch only the guilds you own or can manage. No provider access token is stored in the browser session.</p></div>
+        {% endif %}
+      </section>
+
+      <section class="content-section two-up">
+        <article>
+          <p class="eyebrow">SECURITY</p>
+          <h2>Server-mediated by default</h2>
+          <p>The browser never receives the Supabase secret or Discord client secret. Guild capabilities are checked again before protected actions.</p>
+        </article>
+        <article>
+          <p class="eyebrow">ANALYTICS</p>
+          <h2>No invented success</h2>
+          <p>Cards and charts remain empty until the bot records a real production value event. Preview data is always labelled.</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
+

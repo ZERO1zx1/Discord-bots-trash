@@ -1,0 +1,15 @@
+.git
+.venv
+.next
+.vinext
+dist
+node_modules
+outputs
+work
+.pytest_cache
+.ruff_cache
+**/__pycache__
+.env
+.env.*
+!.env.example
+

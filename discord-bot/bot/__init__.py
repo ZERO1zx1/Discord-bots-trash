@@ -1,0 +1,2 @@
+"""GuildPilot Discord bot process."""
+
