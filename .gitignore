@@ -1,47 +1,38 @@
-# Environment files (contain secrets)
+# Secrets and local configuration
 .env
-.env.local
-.env.production
+.env.*
+!.env.example
+*.pem
+*.key
 
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-.Python
-venv/
 .venv/
+venv/
 *.egg-info/
-dist/
 build/
+dist/
 
-# Node
+# Node.js
 node_modules/
 
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Database
+# Local data
 *.db
 *.db-wal
 *.db-shm
 *.sqlite
 
-# uv
-uv.lock
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
 
-# Large files
+# Archives and oversized local asset collections
 *.zip
-*.ttf
-*.ttc
-*.fon
-*.dat
-Gurten-LGC/cogs/fonts/
-discord bot files/new bot/face_rating_bot/cogs/fonts/
+*.7z
+*.rar
+**/fonts/
+**/font/
+**/gifs/
